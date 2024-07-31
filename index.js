@@ -24,7 +24,7 @@ function paintGrid() {
     const gridCell = document.querySelectorAll('.cell');        
     for (let k = 0; k < gridCell.length; k++) {
         gridCell[k].addEventListener("mouseover", event => {
-            event.target.style.backgroundColor = 'grey';
+            event.target.style.backgroundColor = 'black';
         });
     }
 }
