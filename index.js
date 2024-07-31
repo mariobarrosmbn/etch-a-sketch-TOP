@@ -1,9 +1,10 @@
-// create a function that builds a 16x16 square grid on page load;
 
-window.onload = genGrid(16);
+window.onload = newGrid(16);
 
-function genGrid(n) {
-    const container = document.querySelector('.container');
+function newGrid(n) {
+    const container = document.createElement('div');
+    container.className = 'container';
+    document.body.appendChild(container);
     for (let i = 0; i < n; i++) {
         const row = document.createElement('div');
         row.className = 'row';
@@ -16,12 +17,36 @@ function genGrid(n) {
             row.appendChild(cell);
         }
     }
+    paintGrid();
 }
 
-const gridCell = document.querySelectorAll('.cell');
-
-for (let k = 0; k < gridCell.length; k++) {
-    gridCell[k].addEventListener("mouseover", event => {
-        event.target.style.backgroundColor = 'grey';
-    })
+function paintGrid() {
+    const gridCell = document.querySelectorAll('.cell');        
+    for (let k = 0; k < gridCell.length; k++) {
+        gridCell[k].addEventListener("mouseover", event => {
+            event.target.style.backgroundColor = 'grey';
+        });
+    }
 }
+
+function eraseGrid() {
+    const container = document.querySelector('.container');
+    container.remove();
+}
+
+const button = document.querySelector('.new-grid');
+button.addEventListener('click', () => {    
+    eraseGrid();
+    let number = prompt('How many squares per side of the grid, from 16 to 100?');
+    if (number < 16 || number > 100) {
+        alert('Invalid number! Refresh page and try again.');
+    } else {
+        newGrid(number);
+        paintGrid();
+    }
+});
+
+
+
+
+
