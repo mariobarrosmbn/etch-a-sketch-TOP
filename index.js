@@ -42,7 +42,6 @@ button.addEventListener('click', () => {
         alert('Invalid number! Refresh page and try again.');
     } else {
         newGrid(number);
-        paintGrid();
     }
 });
 
